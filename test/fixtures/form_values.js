@@ -153,7 +153,7 @@ const previousVersionsContent = {
       }
     ],
     formValues: {
-      title: 'Have you previously registered a version(s) of your project with OSHWA?',
+      title: 'If you have previously registered a version(s) of your project with OSHWA, type in the UID for that project',
       contentfulFieldName: 'previousVersions',
       formPlaceholder: 'Enter the OSHWA UID of a previous version'
     }

@@ -27,7 +27,7 @@
     "previousVersions": {
       "formSection": "2",
       "formOrder": "15",
-      "title": "Have you previously registered a version(s) of your project with OSHWA?",
+      "title": "Does your project build upon or incorporate hardware already registered with OSHWA?",
       "contentfulFieldName": "previousVersions",
       "formPlaceholder": "Enter the OSHWA UID of a previous version",
       "type": "array",
@@ -35,7 +35,7 @@
       "requiredErrorMessage": "",
       "requiredDependency": "",
       "instructions":
-        "If you have previously registered a version(s) of your project with OSHWA, type in the UID for that project"
+        "If you or others have previously registered a version of your project, or your project incorporates previously registered projects, type in the UID for that project."
     },
     "projectDescription": {
       "formSection": "2",
