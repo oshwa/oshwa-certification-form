@@ -74,7 +74,7 @@
       "requiredErrorMessage":
         "You must select a project type. If your project doesn't fall into any of these types, select \"Other\".",
       "requiredDependency": "",
-      "instructions": "If your project doesn't fall into any of these types, select \"Other\"."
+      "instructions": "If your project is an open healthware project, submit it at <a href=\"https://healthware.oshwa.org\">healthware.oshwa.org</a>. If your project doesn't fall into any of these types, select \"Other\"."
     },
     "additionalType": {
       "formSection": "2",
