@@ -15,14 +15,12 @@
     "softwareLicense": {
       "formSection": "3",
       "formOrder": "25",
-      "title":
-        "What license is your project's software licensed under? Select \"No software\" if your project doesn't use software",
+      "title": "What license is your project's software licensed under? Select \"No software\" if your project doesn't use software",
       "contentfulFieldName": "softwareLicense",
       "formPlaceholder": "Select a license",
       "type": "string",
       "fieldType": "single_select",
-      "requiredErrorMessage":
-        "You must select a license. If your license is not listed, select \"Other\". If your project doesn't use software, select \"No software\".",
+      "requiredErrorMessage": "You must select a license. If your license is not listed, select \"Other\". If your project doesn't use software, select \"No software\".",
       "requiredDependency": "",
       "instructions": "If your license is not listed, choose \"Other\""
     },
@@ -38,225 +36,80 @@
       "requiredDependency": "",
       "instructions": "If your license is not listed, choose \"Other\""
     },
-    "noCommercialRestriction": {
-      "formSection": "3",
-      "formOrder": "27",
-      "title":
-        "The project is licensed in a way to allow for modifications and derivative works without commercial restriction.",
-      "contentfulFieldName": "noCommercialRestriction",
+    "licensingChecklist": {
+      "title": "Licensing Checklist",
+      "contentfulFieldName": "licensingChecklist",
       "formPlaceholder": "",
-      "type": "boolean",
-      "fieldType": "boolean_select",
-      "requiredErrorMessage": "",
-      "requiredDependency": "",
-      "instructions": ""
+      "type": "json",
+      "fieldType": "checklist",
+      "instructions": "Mark each item that pertains to your project",
+      "hidden": true,
+      "layout": "form-full-stacked bold",
+      "terms": [
+        {
+          "title": "noCommercialRestriction",
+          "term": "The project is licensed in a way to allow for modifications and derivative works without commercial restriction.",
+          "name": "No Commercial Restriction",
+          "explanationField": "explanationNcr"
+        },
+        {
+          "title": "noDocumentationRestriction",
+          "term": "There is no restriction within my control to selling or giving away the project documentation.",
+          "name": "No Documentation Restriction",
+          "explanationField": "explanationNdr"
+        },
+        {
+          "title": "openHardwareComponents",
+          "term": "Where possible, I have chosen to use components in my hardware that are openly licensed.",
+          "name": "Open Hardware Component",
+          "explanationField": "explanationOhwc"
+        },
+        {
+          "title": "creatorContribution",
+          "term": "I understand and comply with the \"Creator Contribution requirement,\" explained in the <a target=\"_blank\" href='https://certification.oshwa.org/requirements.html' target='blank'>Requirements for Certification.</a>",
+          "name": "Creator Contribution",
+          "explanationField": "explanationCcr"
+        },
+        {
+          "title": "noUseRestriction",
+          "term": "There is no restriction on the use by persons or groups, or by the field of endeavor.",
+          "name": "No Use Restriction",
+          "explanationField": "explanationNur"
+        },
+        {
+          "title": "redistributedWork",
+          "term": "The rights granted by any license on the project applies to all whom the work is redistributed to.",
+          "name": "Redistributed Work",
+          "explanationField": "explanationRwr"
+        },
+        {
+          "title": "noSpecificProduct",
+          "term": "The rights granted under any license on the project do not depend on the licensed work being part of a specific product.",
+          "name": "No Specific Product",
+          "explanationField": "explanationNsp"
+        },
+        {
+          "title": "noComponentRestriction",
+          "term": "The rights granted under any license on the project do not restrict other hardware or software, for example by requiring that all other hardware or software sold with the item be open source",
+          "name": "No Component Restriction",
+          "explanationField": "explanationNor"
+        },
+        {
+          "title": "technologyNeutral",
+          "term": "The rights granted under any license on the project are <a target=\"_blank\" href=\"https://interoperable-europe.ec.europa.eu/collection/common-assessment-method-standards-and-specifications-camss/solution/elap/technology-neutrality\">technology neutral.</a>",
+          "name": "Technology Neutral",
+          "explanationField": "explanationTn"
+        }
+      ]
     },
-    "explanationNcr": {
-      "formSection": "3",
-      "formOrder": "28",
-      "title": "If you answered no, please explain why",
-      "contentfulFieldName": "explanationNcr",
-      "formPlaceholder": "Provide a brief explanation (500 characters)",
+    "licensingChecklistExplanation": {
+      "title": "If you left any item in the licensing checklist above, unchecked please explain why",
+      "contentfulFieldName": "licensingChecklistExplanation",
+      "formPlaceholder": "Provide a brief explanation (maximum 50000 characters)",
       "type": "string",
       "fieldType": "textarea",
-      "requiredErrorMessage": "This explanation is required if you answered no.",
-      "requiredDependency": "noCommercialRestriction",
-      "instructions": "Please limit your response to 500 characters"
-    },
-    "noDocumentationRestriction": {
-      "formSection": "3",
-      "formOrder": "29",
-      "title": "There is no restriction within my control to selling or giving away the project documentation.",
-      "contentfulFieldName": "noDocumentationRestriction",
-      "formPlaceholder": "",
-      "type": "boolean",
-      "fieldType": "boolean_select",
-      "requiredErrorMessage": "",
-      "requiredDependency": "",
-      "instructions": ""
-    },
-    "explanationNdr": {
-      "formSection": "3",
-      "formOrder": "30",
-      "title": "If you answered no, please explain why",
-      "contentfulFieldName": "explanationNdr",
-      "formPlaceholder": "Provide a brief explanation (500 characters)",
-      "type": "string",
-      "fieldType": "textarea",
-      "requiredErrorMessage": "This explanation is required if you answered no.",
-      "requiredDependency": "noDocumentationRestriction",
-      "instructions": "Please limit your response to 500 characters"
-    },
-    "openHardwareComponents": {
-      "formSection": "3",
-      "formOrder": "31",
-      "title": "Where possible, I have chosen to use components in my hardware that are openly licensed.",
-      "contentfulFieldName": "openHardwareComponents",
-      "formPlaceholder": "",
-      "type": "boolean",
-      "fieldType": "boolean_select",
-      "requiredErrorMessage": "",
-      "requiredDependency": "",
-      "instructions": ""
-    },
-    "explanationOhwc": {
-      "formSection": "3",
-      "formOrder": "32",
-      "title": "If you answered no, please explain why",
-      "contentfulFieldName": "explanationOhwc",
-      "formPlaceholder": "Provide a brief explanation (500 characters)",
-      "type": "string",
-      "fieldType": "textarea",
-      "requiredErrorMessage": "This explanation is required if you answered no.",
-      "requiredDependency": "openHardwareComponents",
-      "instructions": "Please limit your response to 500 characters"
-    },
-    "creatorContribution": {
-      "formSection": "3",
-      "formOrder": "33",
-      "title":
-        "I understand and comply with the \"Creator Contribution requirement,\" explained in the <a href='https://certification.oshwa.org/requirements.html' target='blank'>Requirements for Certification.</a>",
-      "contentfulFieldName": "creatorContribution",
-      "formPlaceholder": "",
-      "type": "boolean",
-      "fieldType": "boolean_select",
-      "requiredErrorMessage": "",
-      "requiredDependency": "",
-      "instructions": ""
-    },
-    "explanationCcr": {
-      "formSection": "3",
-      "formOrder": "34",
-      "title": "If you answered no, please explain why",
-      "contentfulFieldName": "explanationCcr",
-      "formPlaceholder": "Provide a brief explanation (500 characters)",
-      "type": "string",
-      "fieldType": "textarea",
-      "requiredErrorMessage": "This explanation is required if you answered no.",
-      "requiredDependency": "creatorContribution",
-      "instructions": "Please limit your response to 500 characters"
-    },
-    "noUseRestriction": {
-      "formSection": "3",
-      "formOrder": "35",
-      "title": "There is no restriction on the use by persons or groups, or by the field of endeavor.",
-      "contentfulFieldName": "noUseRestriction",
-      "formPlaceholder": "",
-      "type": "boolean",
-      "fieldType": "boolean_select",
-      "requiredErrorMessage": "",
-      "requiredDependency": "",
-      "instructions": ""
-    },
-    "explanationNur": {
-      "formSection": "3",
-      "formOrder": "36",
-      "title": "If you answered no, please explain why",
-      "contentfulFieldName": "explanationNur",
-      "formPlaceholder": "Provide a brief explanation (500 characters)",
-      "type": "string",
-      "fieldType": "textarea",
-      "requiredErrorMessage": "This explanation is required if you answered no.",
-      "requiredDependency": "noUseRestriction",
-      "instructions": "Please limit your response to 500 characters"
-    },
-    "redistributedWork": {
-      "formSection": "3",
-      "formOrder": "37",
-      "title": "The rights granted by any license on the project applies to all whom the work is redistributed to.",
-      "contentfulFieldName": "redistributedWork",
-      "formPlaceholder": "",
-      "type": "boolean",
-      "fieldType": "boolean_select",
-      "requiredErrorMessage": "",
-      "requiredDependency": "",
-      "instructions": ""
-    },
-    "explanationRwr": {
-      "formSection": "3",
-      "formOrder": "38",
-      "title": "If you answered no, please explain why",
-      "contentfulFieldName": "explanationRwr",
-      "formPlaceholder": "Provide a brief explanation (500 characters)",
-      "type": "string",
-      "fieldType": "textarea",
-      "requiredErrorMessage": "This explanation is required if you answered no.",
-      "requiredDependency": "redistributedWork",
-      "instructions": "Please limit your response to 500 characters"
-    },
-    "noSpecificProduct": {
-      "formSection": "3",
-      "formOrder": "39",
-      "title":
-        "The rights granted under any license on the project do not depend on the licensed work being part of a specific product.",
-      "contentfulFieldName": "noSpecificProduct",
-      "formPlaceholder": "",
-      "type": "boolean",
-      "fieldType": "boolean_select",
-      "requiredErrorMessage": "",
-      "requiredDependency": "",
-      "instructions": ""
-    },
-    "explanationNsp": {
-      "formSection": "3",
-      "formOrder": "40",
-      "title": "If you answered no, please explain why",
-      "contentfulFieldName": "explanationNsp",
-      "formPlaceholder": "Provide a brief explanation (500 characters)",
-      "type": "string",
-      "fieldType": "textarea",
-      "requiredErrorMessage": "This explanation is required if you answered no.",
-      "requiredDependency": "noSpecificProduct",
-      "instructions": "Please limit your response to 500 characters"
-    },
-    "noComponentRestriction": {
-      "formSection": "3",
-      "formOrder": "41",
-      "title":
-        "The rights granted under any license on the project do not restrict other hardware or software, for example by requiring that all other hardware or software sold with the item be open source.",
-      "contentfulFieldName": "noComponentRestriction",
-      "formPlaceholder": "",
-      "type": "boolean",
-      "fieldType": "boolean_select",
-      "requiredErrorMessage": "",
-      "requiredDependency": "",
-      "instructions": ""
-    },
-    "explanationNor": {
-      "formSection": "3",
-      "formOrder": "42",
-      "title": "If you answered no, please explain why",
-      "contentfulFieldName": "explanationNor",
-      "formPlaceholder": "Provide a brief explanation (500 characters)",
-      "type": "string",
-      "fieldType": "textarea",
-      "requiredErrorMessage": "This explanation is required if you answered no.",
-      "requiredDependency": "noComponentRestriction",
-      "instructions": "Please limit your response to 500 characters"
-    },
-    "technologyNeutral": {
-      "formSection": "3",
-      "formOrder": "43",
-      "title": "The rights granted under any license on the project are technology neutral.",
-      "contentfulFieldName": "technologyNeutral",
-      "formPlaceholder": "",
-      "type": "boolean",
-      "fieldType": "boolean_select",
-      "requiredErrorMessage": "",
-      "requiredDependency": "",
-      "instructions": ""
-    },
-    "explanationTn": {
-      "formSection": "3",
-      "formOrder": "44",
-      "title": "If you answered no, please explain why",
-      "contentfulFieldName": "explanationTn",
-      "formPlaceholder": "Provide a brief explanation (500 characters)",
-      "type": "string",
-      "fieldType": "textarea",
-      "requiredErrorMessage": "This explanation is required if you answered no.",
-      "requiredDependency": "technologyNeutral",
-      "instructions": "Please limit your response to 500 characters"
+      "instructions": "This explanation is required if you left any item unchecked. Please limit your response to 50000 characters",
+      "layout": "form-full-stacked bold"
     }
   }
 }

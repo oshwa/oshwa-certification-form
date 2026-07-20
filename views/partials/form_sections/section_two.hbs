@@ -48,6 +48,26 @@
         </div>
       </div>
 
+            {{!-- 16A NEW --}}
+      <div class="row">
+        <div class="columns large-3 small-12">
+          {{{createLabel formValues=sectionTwo.field.intendedUseCase}}}
+        </div>
+        <div class="columns">
+          {{{createTextArea formValues=sectionTwo.field.intendedUseCase inputValue=project.intendedUseCase}}}
+        </div>
+      </div>
+
+            {{!-- 16B NEW --}}
+      <div class="row align-middle">
+        <div class="columns small-12 single-checkbox-field">
+          {{{createCheckbox formValues=sectionTwo.field.intendedUseCaseStatement checked=project.intendedUseCaseStatement}}}
+        </div>
+      </div>
+
+
+
+
       {{!-- 17 --}}
       <div class="row align-middle">
         <div class="columns large-3 small-12">

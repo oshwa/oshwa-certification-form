@@ -12,7 +12,8 @@ const {
   isBooleanSelect,
   returnBooleanFromSelect,
   isArrayField,
-  returnArrayFromTextField
+  returnArrayFromTextField,
+  returnLicensingChecklistItems
 } = require('../helpers/form_helpers.js');
 
 const { removeElFromArray } = require('../helpers/utils');
@@ -123,6 +124,8 @@ Project.prototype.mapFieldsToContentful = function mapFieldsToContentful() {
   });
   // add citations input values to contentful field name
   fields.citations = { 'en-US': returnUrlToObj(citations) };
+
+  fields.licensingChecklist = {'en-US': returnLicensingChecklistItems(this['licensingChecklist'])}
 
   delete fields['previousVersions[]'];
   return fields;

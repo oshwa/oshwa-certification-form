@@ -597,11 +597,11 @@ form .checkbox label {
   margin-bottom: 0.5rem;
 }
 
-.certificate-mark {
+.certificate-mark, .licensing-checklist {
   margin-left: 1rem;
   margin-right: 1rem;
 }
-.certificate-mark .checkbox label {
+.certificate-mark .checkbox label, .licensing-checklist .checkbox label {
   display: block;
   padding-left: 3rem;
   font-size: 1rem;

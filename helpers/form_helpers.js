@@ -83,6 +83,13 @@ const returnUrlToObj = urls => {
   return urlsArr;
 };
 
+const returnLicensingChecklistItems = values => {
+  if (typeof values === 'string') {
+    return values.split();
+  }
+  return values;
+};
+
 module.exports = {
   certificationMarkTerms,
   citationsKeyRegex,
@@ -99,5 +106,6 @@ module.exports = {
   returnBooleanFromSelect,
   returnCertificationObjectFromCheckbox,
   returnReferences,
-  returnUrlToObj
+  returnUrlToObj,
+  returnLicensingChecklistItems
 };

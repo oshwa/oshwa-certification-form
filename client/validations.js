@@ -54,6 +54,8 @@ const Validations = {
         projectVersion: {},
         previousVersions: {},
         projectDescription: {},
+        intendedUseCase: {},
+        intendedUseCaseStatement: {},
         projectWebsite: {
           required: false,
           url: true,
@@ -77,75 +79,13 @@ const Validations = {
         hardwareLicense: { required: true },
         softwareLicense: { required: true },
         documentationLicense: { required: true },
-        noCommercialRestriction: {},
-        explanationNcr: {
+        licensingChecklist: {},
+        licensingChecklistExplanation: {
           required: {
             depends() {
-              return $("select[name='noCommercialRestriction']").val() === 'false';
-            }
-          }
-        },
-        noDocumentationRestriction: {},
-        explanationNdr: {
-          required: {
-            depends() {
-              return $("select[name='noDocumentationRestriction']").val() === 'false';
-            }
-          }
-        },
-        openHardwareComponents: {},
-        explanationOhwc: {
-          required: {
-            depends() {
-              return $("select[name='openHardwareComponents']").val() === 'false';
-            }
-          }
-        },
-        creatorContribution: {},
-        explanationCcr: {
-          required: {
-            depends() {
-              return $("select[name='creatorContribution']").val() === 'false';
-            }
-          }
-        },
-        noUseRestriction: {},
-        explanationNur: {
-          required: {
-            depends() {
-              return $("select[name='noUseRestriction']").val() === 'false';
-            }
-          }
-        },
-        redistributedWork: {},
-        explanationRwr: {
-          required: {
-            depends() {
-              return $("select[name='redistributedWork']").val() === 'false';
-            }
-          }
-        },
-        noSpecificProduct: {},
-        explanationNsp: {
-          required: {
-            depends() {
-              return $("select[name='noSpecificProduct']").val() === 'false';
-            }
-          }
-        },
-        noComponentRestriction: {},
-        explanationNor: {
-          required: {
-            depends() {
-              return $("select[name='noComponentRestriction']").val() === 'false';
-            }
-          }
-        },
-        technologyNeutral: {},
-        explanationTn: {
-          required: {
-            depends() {
-              return $("select[name='technologyNeutral']").val() === 'false';
+              const numTerms = $("input[name='licensingChecklist']").length;
+              const numSelected = $("input[name='licensingChecklist']:checked").length;
+              return numTerms !== numSelected;
             }
           }
         },
@@ -205,24 +145,11 @@ const Validations = {
             'You must select a license. If your license is not listed, select "Other". If your project doesn\'t use software, select "No software".'
         },
         documentationLicense: { required: 'You must select a license. If your license is not listed, select "Other"' },
-        noCommercialRestriction: {},
-        explanationNcr: { required: 'This explanation is required if you answered no.' },
-        noDocumentationRestriction: {},
-        explanationNdr: { required: 'This explanation is required if you answered no.' },
-        openHardwareComponents: {},
-        explanationOhwc: { required: 'This explanation is required if you answered no.' },
-        creatorContribution: {},
-        explanationCcr: { required: 'This explanation is required if you answered no.' },
-        noUseRestriction: {},
-        explanationNur: { required: 'This explanation is required if you answered no.' },
-        redistributedWork: {},
-        explanationRwr: { required: 'This explanation is required if you answered no.' },
-        noSpecificProduct: {},
-        explanationNsp: { required: 'This explanation is required if you answered no.' },
-        noComponentRestriction: {},
-        explanationNor: { required: 'This explanation is required if you answered no.' },
-        technologyNeutral: {},
-        explanationTn: { required: 'This explanation is required if you answered no.' },
+        licensingChecklist: {},
+        licensingChecklistExplanation: {
+          
+          required: 'This explanation is required if you did not agree to one or more of the above terms.'
+        },
         certificationmarkTerms: {},
         explanationCertificationTerms: {
           required: 'This explanation is required if you did not agree to one or more of the above terms.'
@@ -283,6 +210,11 @@ const Validations = {
       $('input[name="bindingParty"]').valid();
     });
   },
+  licensingChecklistMessages() {
+    $("input[name='licensingChecklist']").on('change', () => {
+      $("textarea[name='licensingChecklistExplanation']").valid();
+    });
+  },
   certificationCheckboxMessages() {
     $("input[name='certificationmarkTerms']").on('change', () => {
       $("textarea[name='explanationCertificationTerms']").valid();
@@ -331,6 +263,7 @@ const Validations = {
     this.addUrlValidation();
     this.selectErrorMessages();
     this.textAreaMessaging();
+    this.licensingChecklistMessages()
     this.certificationCheckboxMessages();
     this.dependentSelectMessages();
     this.urlCitationMessages();

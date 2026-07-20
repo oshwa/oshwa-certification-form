@@ -296,7 +296,33 @@ const getCheckedTypes = project => {
 
 const markdownify = str => (str ? md.parse(str) : '');
 
-
+const createLicensingChecklist = content => {
+  const {
+    hash: { formValues, checkedOptions }
+  } = content;
+  const licensingChecklistTerms = formValues.terms;
+  let allCheckboxes = '';
+  licensingChecklistTerms.forEach(option => {
+    allCheckboxes += `<div class="columns small-12 checkbox">
+      <input
+        type="checkbox" id="${option.title}" name="${formValues.contentfulFieldName}" value="${option.title}" ${
+      checkedOptions && checkedOptions.indexOf(option.title) !== -1 ? `checked=checked` : ``
+    }
+      />
+      <label for="${option.title}">${option.term}</label>
+    </div>`;
+  });
+  return `
+    <div class="row">
+      <fieldset>
+        <legend>${formValues.instructions}</legend>
+        <div class="instructions">
+        </div>
+        ${allCheckboxes}
+      </fieldset>
+    </div>
+  `;
+};
 const createCertificationMarkTerms = content => {
   const {
     hash: { formValues, checkedOptions }
@@ -342,6 +368,7 @@ const joinArrWithCommas = arr => {
 
 module.exports = {
   createBooleanDropdown,
+  createLicensingChecklist,
   createCertificationMarkTerms,
   createCheckbox,
   createCheckboxes,
