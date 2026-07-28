@@ -18,6 +18,24 @@ const returnExplanationDependency = (value, req, dependentField) => {
   return true;
 };
 
+const returnLicensingChecklistDependency = (value, req) => {
+  licensingChecklistCount = 9;
+  const checkedTerms = req.body.licensingChecklist;
+  if (value <= 0) {
+    switch (typeof checkedTerms) {
+      case 'object':
+        if (checkedTerms.length >= licensingChecklistCount) {
+          return true;
+        }
+        return false;
+      default:
+        // if undefined or string
+        return false;
+    }
+  }
+  return true;
+};
+
 const returnCertificationExplanationDependency = (value, req) => {
   const certificationMarkTermsCount = 5;
   const checkedTerms = req.body.certificationMarkTerms;
@@ -39,85 +57,83 @@ const returnCertificationExplanationDependency = (value, req) => {
 const validateProjectFields = [
   check('oshwaUid')
     .trim()
-    .blacklist("><"),
+    .blacklist('><'),
   check('responsiblePartyType')
     .isLength({ min: 1 })
     .withMessage('Responsible Party Type is required')
     .isLength({ max: 256 })
     .withMessage('Maximum length is 256 characters')
     .trim()
-    .blacklist("><"),
+    .blacklist('><'),
   check('responsibleParty')
     .isLength({ min: 1 })
     .withMessage('Responsible Party is required')
     .isLength({ max: 256 })
     .withMessage('Maximum length is 256 characters')
     .trim()
-    .blacklist("><"),
+    .blacklist('><'),
   check('bindingParty')
     .custom((value, { req }) => {
       return returnBindingPartyDependency(value, req);
     })
     .withMessage('Name of the binding party is required if responsible party type is not an individual')
     .trim()
-    .blacklist("><"),
+    .blacklist('><'),
   check('country')
     .isLength({ min: 1 })
     .withMessage('Country is required')
     .isLength({ max: 256 })
     .withMessage('Maximum length is 256 characters')
     .trim()
-    .blacklist("><"),
+    .blacklist('><'),
   check('streetAddress1')
     .isLength({ max: 256 })
     .withMessage('Maximum length is 256 characters')
     .trim()
-    .blacklist("><"),
+    .blacklist('><'),
   check('streetAddress2')
     .isLength({ max: 256 })
     .withMessage('Maximum length is 256 characters')
     .trim()
-    .blacklist("><"),
+    .blacklist('><'),
   check('city')
     .isLength({ max: 256 })
     .withMessage('Maximum length is 256 characters')
     .trim()
-    .blacklist("><"),
+    .blacklist('><'),
   check('state')
     .isLength({ max: 256 })
     .withMessage('Maximum length is 256 characters')
     .trim()
-    .blacklist("><"),
+    .blacklist('><'),
   check('postalCode')
     .isLength({ max: 256 })
     .withMessage('Maximum length is 256 characters')
     .trim()
-    .blacklist("><"),
+    .blacklist('><'),
   check('privateContact')
     .optional({ checkFalsy: true })
     .isEmail()
-    // .normalizeEmail()
     .withMessage('Please enter a valid email address')
     .isLength({ max: 256 })
     .withMessage('Maximum length is 256 characters')
     .trim()
-    .blacklist("><"),
+    .blacklist('><'),
   check('publicContact')
     .optional({ checkFalsy: true })
     .isEmail()
-    // .normalizeEmail()
     .withMessage('Please enter a valid email address')
     .isLength({ max: 256 })
     .withMessage('Maximum length is 256 characters')
     .trim()
-    .blacklist("><"),
+    .blacklist('><'),
   check('projectName')
     .isLength({ min: 1 })
     .withMessage('Project name is required')
     .isLength({ max: 256 })
     .withMessage('Maximum length is 256 characters')
     .trim()
-    .blacklist("><"),
+    .blacklist('><'),
   check('projectWebsite')
     .isLength({ max: 256 })
     .withMessage('Maximum length is 256 characters')
@@ -126,141 +142,69 @@ const validateProjectFields = [
     .isLength({ max: 256 })
     .withMessage('Maximum length is 256 characters')
     .trim()
-    .blacklist("><"),
+    .blacklist('><'),
   check('previousVersions')
     .isLength({ max: 256 })
     .withMessage('Maximum length is 256 characters')
     .trim()
-    .blacklist("><"),
+    .blacklist('><'),
   check('projectDescription')
     .trim()
-    .blacklist("><"),
+    .blacklist('><'),
+  check('intendedUseCase')
+    .trim()
+    .blacklist('><'),
+  check('intendedUseCaseStatement')
+    .trim()
+    .blacklist('><'),
   check('primaryType')
     .isLength({ min: 1 })
     .withMessage(
       'Primary Type: You must select a project type. If your project doesn\'t fall into any of these types, select "Other".'
     )
     .trim()
-    .blacklist("><"),
+    .blacklist('><'),
   check('additionalType'),
   check('projectKeywords')
     .trim()
-    .blacklist("><"),
+    .blacklist('><'),
   check('documentationUrl')
     .isLength({ max: 256 })
     .withMessage('Maximum length is 256 characters')
     .trim(),
   check('availableFileFormat')
     .trim()
-    .blacklist("><"),
+    .blacklist('><'),
   check('citations')
     .trim()
-    .blacklist("><"),
+    .blacklist('><'),
   check('hardwareLicense')
     .isLength({ min: 1 })
     .withMessage('Hardware license: You must select a license. If your license is not listed, select "Other"')
     .trim()
-    .blacklist("><"),
+    .blacklist('><'),
   check('softwareLicense')
     .isLength({ min: 1 })
     .withMessage(
       'Software license: You must select a license. If your license is not listed, select "Other". If your project doesn\'t use software, select "No software".'
     )
     .trim()
-    .blacklist("><"),
+    .blacklist('><'),
   check('documentationLicense')
     .isLength({ min: 1 })
     .withMessage('Documentation License: You must select a license. If your license is not listed, select "Other"')
     .trim()
-    .blacklist("><"),
-  check('noCommercialRestriction')
-    .trim()
-    .blacklist("><"),
-  check('explanationNcr')
+    .blacklist('><'),
+  check('licensingChecklist'),
+  check('licensingChecklistExplanation')
     .custom((value, { req }) => {
-      return returnExplanationDependency(value, req, 'noCommercialRestriction');
+      return returnLicensingChecklistDependency(value, req);
     })
-    .withMessage('noCommercialRestriction: This explanation is required if you answered no.')
+    .withMessage(
+      'licensingChecklist: This explanation is required if an item in the licensing checklist is not checked.'
+    )
     .trim()
-    .blacklist("><"),
-  check('noDocumentationRestriction')
-    .trim()
-    .blacklist("><"),
-  check('explanationNdr')
-    .custom((value, { req }) => {
-      return returnExplanationDependency(value, req, 'noDocumentationRestriction');
-    })
-    .withMessage('noDocumentationRestriction: This explanation is required if you answered no.')
-    .trim()
-    .blacklist("><"),
-  check('openHardwareComponents')
-    .trim()
-    .blacklist("><"),
-  check('explanationOhwc')
-    .custom((value, { req }) => {
-      return returnExplanationDependency(value, req, 'openHardwareComponents');
-    })
-    .withMessage('openHardwareComponents: This explanation is required if you answered no.')
-    .trim()
-    .blacklist("><"),
-  check('creatorContribution')
-    .trim()
-    .blacklist("><"),
-  check('explanationCcr')
-    .custom((value, { req }) => {
-      return returnExplanationDependency(value, req, 'creatorContribution');
-    })
-    .withMessage('creatorContribution: This explanation is required if you answered no.')
-    .trim()
-    .blacklist("><"),
-  check('noUseRestriction')
-    .trim()
-    .blacklist("><"),
-  check('explanationNur')
-    .custom((value, { req }) => {
-      return returnExplanationDependency(value, req, 'noUseRestriction');
-    })
-    .withMessage('noUseRestriction: This explanation is required if you answered no.')
-    .trim()
-    .blacklist("><"),
-  check('redistributedWork')
-    .trim()
-    .blacklist("><"),
-  check('explanationRwr')
-    .custom((value, { req }) => {
-      return returnExplanationDependency(value, req, 'redistributedWork');
-    })
-    .withMessage('redistributedWork: This explanation is required if you answered no.')
-    .trim()
-    .blacklist("><"),
-  check('noSpecificProduct')
-    .trim()
-    .blacklist("><"),
-  check('explanationNsp')
-    .custom((value, { req }) => {
-      return returnExplanationDependency(value, req, 'noSpecificProduct');
-    })
-    .withMessage('noSpecificProduct: This explanation is required if you answered no.')
-    .trim()
-    .blacklist("><"),
-  check('noComponentRestriction')
-    .trim()
-    .blacklist("><"),
-  check('explanationNor')
-    .custom((value, { req }) => {
-      return returnExplanationDependency(value, req, 'noComponentRestriction');
-    })
-    .withMessage('noComponentRestriction: This explanation is required if you answered no.')
-    .trim()
-    .blacklist("><"),
-  check('technologyNeutral')
-    .trim()
-    .blacklist("><"),
-  check('explanationTn')
-    .custom((value, { req }) => {
-      return returnExplanationDependency(value, req, 'technologyNeutral');
-    })
-    .withMessage('noComponentRestriction: This explanation is required if you answered no.'),
+    .blacklist('><'),
   check('certificationMarkTerms'),
   check('explanationCertificationTerms')
     .custom((value, { req }) => {
@@ -270,19 +214,19 @@ const validateProjectFields = [
       'certificationMarkTerms: This explanation is required if you did not agree to one or more of the certification mark terms.'
     )
     .trim()
-    .blacklist("><"),
+    .blacklist('><'),
   check('relationship')
     .trim()
-    .blacklist("><"),
+    .blacklist('><'),
   check('agreementTerms')
     .isLength({ min: 1 })
     .withMessage('You must agree to the terms of the OSHWA Open Source Hardware Certification Mark License Agreement.'),
   check('agreementTerms')
     .trim()
-    .blacklist("><"),
+    .blacklist('><'),
   check('parentName')
     .trim()
-    .blacklist("><"),
+    .blacklist('><'),
   check('g-recaptcha-response')
     .isLength({ min: 1 })
     .withMessage('Please verify you are not a robot.')
@@ -292,5 +236,6 @@ module.exports = {
   validateProjectFields,
   returnBindingPartyDependency,
   returnExplanationDependency,
+  returnLicensingChecklistDependency,
   returnCertificationExplanationDependency
 };

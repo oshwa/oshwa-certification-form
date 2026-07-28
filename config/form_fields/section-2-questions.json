@@ -34,8 +34,7 @@
       "fieldType": "reference",
       "requiredErrorMessage": "",
       "requiredDependency": "",
-      "instructions":
-        "If you or others have previously registered a version of your project, or your project incorporates previously registered projects, type in the UID for that project."
+      "instructions": "If you or others have previously registered a version of your project, or your project incorporates previously registered projects, type in the UID for that project."
     },
     "projectDescription": {
       "formSection": "2",
@@ -49,6 +48,26 @@
       "requiredDependency": "",
       "instructions": "Please limit your response to 500 characters"
     },
+
+    "intendedUseCase": {
+      "title": "Intended Use Case",
+      "contentfulFieldName": "intendedUseCase",
+      "formPlaceholder": "Provide a brief description of the intended use case (maximum 50000 characters)",
+      "type": "string",
+      "fieldType": "textarea",
+      "requiredErrorMessage": "",
+      "requiredDependency": "",
+      "instructions": "Please describe the intended situation(s) of use or use case for this project"
+    },
+    "intendedUseCaseStatement": {
+      "title": "I understand that my intended use case may not be the intended use case used in a derivative project.",
+      "contentfulFieldName": "intendedUseCaseStatement",
+      "formPlaceholder": "",
+      "type": "boolean",
+      "fieldType": "boolean_checkbox",
+      "instructions": ""
+    },
+
     "projectWebsite": {
       "formSection": "2",
       "formOrder": "17",
@@ -71,8 +90,7 @@
       "formPlaceholder": "Select a primary project type",
       "type": "string",
       "fieldType": "single_select",
-      "requiredErrorMessage":
-        "You must select a project type. If your project doesn't fall into any of these types, select \"Other\".",
+      "requiredErrorMessage": "You must select a project type. If your project doesn't fall into any of these types, select \"Other\".",
       "requiredDependency": "",
       "instructions": "If your project is an open healthware project, submit it at <a href=\"https://healthware.oshwa.org\">healthware.oshwa.org</a>. If your project doesn't fall into any of these types, select \"Other\"."
     },
@@ -129,8 +147,7 @@
     "citations": {
       "formSection": "2",
       "formOrder": "23",
-      "title":
-        "Does your project incorporate or build upon other open projects that are not currently certified by OSHWA? If so, use this space to cite those projects",
+      "title": "Does your project incorporate or build upon other open projects that are not currently certified by OSHWA? If so, use this space to cite those projects",
       "contentfulFieldName": "citations",
       "formPlaceholder": "Enter a URL including the protocol (e.g https://example.com)",
       "type": "json",
