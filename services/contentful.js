@@ -65,7 +65,7 @@ const getValidationCheckboxItems = (contentType, id) =>
 const getValidationsFromContentful = contentModel => {
   const countryOptions = getValidationDropdownItems(contentModel, 'country');
   const responsiblePartyTypeOptions = getValidationDropdownItems(contentModel, 'responsiblePartyType');
-  const primaryProjectTypes = getValidationDropdownItems(contentModel, 'primaryType');
+  const primaryProjectTypes = getValidationDropdownItems(contentModel, 'primaryType').filter(item => item !== 'Health');
   const additionalProjectTypes = getValidationCheckboxItems(contentModel, 'additionalType');
   const hardwareLicenses = getValidationDropdownItems(contentModel, 'hardwareLicense');
   const softwareLicenses = getValidationDropdownItems(contentModel, 'softwareLicense');
